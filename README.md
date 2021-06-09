@@ -6,7 +6,7 @@
 3. [Instalação](#Instalação)
 
 ### Sobre
-Aplicação Mobile voltada para a otimização do checklist da CETAF - Agricola Famosa, e também na melhoria no auxilio para os usuários que não possui conhecimento na leitura e escrita da nossa gramatica. 
+Aplicação Mobile voltada para a otimização do checklist da CETAF - Agricola Famosa, e também na melhoria no auxilio para os usuários que não possui conhecimento literario e gramatical. 
 
 ### Tecnologias
 Utilizaremos do Dart como linguagem, Flutter como framework
