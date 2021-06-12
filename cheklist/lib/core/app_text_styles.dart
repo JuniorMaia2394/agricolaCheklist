@@ -17,7 +17,7 @@ class AppTextStyles {
   );
 
   static final TextStyle label = GoogleFonts.inter(
-    color: AppColors.white,
+    color: AppColors.font,
     fontSize: 15,
     fontWeight: FontWeight.w400,
   );
