@@ -1,5 +1,6 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/home/Widgets/input/form_input.dart';
+import 'package:cheklist/home/Widgets/card/form_card.dart';
 import 'package:flutter/material.dart';
 
 class CustomForm extends StatefulWidget {
@@ -24,39 +25,49 @@ class CustomFormState extends State<CustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: FormInput(label: 'Nome do tratorista',),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: FormInput(label: 'Identificação do trator',),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(
-                        SnackBar(
-                          backgroundColor: AppColors.lightPrimary ,
-                          content:
-                            Text('Enviando dados...')
-                          )
-                      );
-                }
-              },
-              child: Text('Confirmar'),
-            ),
-          ],
+      child: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: FormInput(label: 'Nome do tratorista'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: FormInput(label: 'Identificação do trator'),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+                child: FormCard()
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+                child: FormCard()
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                          content: Text('Enviando os dados'),
+                          backgroundColor: AppColors.darkPrimary
+                        ));
+                  }
+                },
+                label: const Text('Confirmar'),
+                icon: Icon(Icons.thumb_up),
+
+              ),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         ),
       ),
     );
