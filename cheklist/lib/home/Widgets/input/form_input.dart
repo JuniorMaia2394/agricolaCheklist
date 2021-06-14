@@ -3,24 +3,39 @@ import 'package:flutter/material.dart';
 import 'package:cheklist/core/core.dart';
 
 class FormInput extends StatelessWidget {
-  final String title;
+  final String label;
 
   const FormInput({
     Key key,    
-    this.title,  
+    this.label,  
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.all(10.0),
-        color: AppColors.lightGray,
-        width: 200,
-        height: 50,
-        child: Text(
-          this.title,
-          style: AppTextStyles.label,
+    return TextFormField(
+      // The validator receives the text that the user has entered.
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Por favor, digite um valor válido.';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: '$label',
+        fillColor: AppColors.font,
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: BorderSide(
+            color: AppColors.lightPrimary,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: BorderSide(
+            color: AppColors.gray,
+            width: 1.0,
+          ),
         ),
       ),
     );
