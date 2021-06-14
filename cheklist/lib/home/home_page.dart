@@ -2,8 +2,7 @@ import 'package:cheklist/core/app_text_styles.dart';
 import 'package:cheklist/core/core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cheklist/home/Widgets/card/form_card.dart';
-import 'package:cheklist/home/Widgets/input/form_input.dart';
+import 'package:cheklist/home/Widgets/form/custom_form.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -15,13 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
