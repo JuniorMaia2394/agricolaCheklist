@@ -21,4 +21,10 @@ class AppTextStyles {
     fontSize: 15,
     fontWeight: FontWeight.w400,
   );
+  
+  static final TextStyle cardNumber = GoogleFonts.inter(
+    color: AppColors.darkPrimary,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
 }

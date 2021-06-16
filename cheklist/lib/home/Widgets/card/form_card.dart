@@ -18,12 +18,19 @@ class FormCard extends StatelessWidget {
       shadowColor: AppColors.black.withOpacity(1),
       child: Column(
         children: <Widget>[
-          const ListTile(
-            title: Text(
-              '2 - Verificar nível de óleo hidráulico',
-              style: TextStyle(),
+          Row(children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                  '$cardNumber',
+                  style: AppTextStyles.cardNumber,
+              ),
             ),
-          ),
+            Text(
+                '$title',
+                style: AppTextStyles.label,
+            ),
+          ]),
           Icon(
             Icons.agriculture,
             size: 100,
