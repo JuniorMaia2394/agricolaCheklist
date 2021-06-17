@@ -41,31 +41,30 @@ class CustomFormState extends State<CustomForm> {
                 child: FormInput(label: 'Identificação do trator'),
               ),
               ListView.builder(
-                shrinkWrap: true,
-                itemCount: tractorProblemsData.length,
-                itemBuilder: (ctx, problem) => Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
-                  child: FormCard(
-                    title: tractorProblemsData.values.elementAt(problem).title,
-                    cardNumber: tractorProblemsData.values.elementAt(problem).id,
-                  ),
-                )
-              ),
+                  shrinkWrap: true,
+                  itemCount: tractorProblemsData.length,
+                  itemBuilder: (ctx, problem) => Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+                        child: FormCard(
+                          title: tractorProblemsData.values
+                              .elementAt(problem)
+                              .title,
+                          cardNumber:
+                              tractorProblemsData.values.elementAt(problem).id,
+                        ),
+                      )),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(
-                            content: Text('Enviando os dados'),
-                            backgroundColor: AppColors.darkPrimary
-                          ));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Enviando os dados'),
+                          backgroundColor: AppColors.darkPrimary));
                     }
                   },
                   label: const Text('Confirmar'),
                   icon: Icon(Icons.thumb_up),
-
                 ),
               ),
             ],
