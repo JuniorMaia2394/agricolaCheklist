@@ -42,22 +42,29 @@ class FormCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextButton(
-                    child: const Text('OK'),
-                    style: TextButton.styleFrom(
-                        backgroundColor: AppColors.success,
-                        primary: AppColors.white),
-                    onPressed: () {/* ... */},
+                  child: SizedBox(
+                    width: 70,
+                    height: 40,
+                    child: TextButton(
+                      child: const Text('OK'),
+                      style: TextButton.styleFrom(
+                          backgroundColor: AppColors.success,
+                          primary: AppColors.white),
+                      onPressed: () {/* ... */},
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
-                TextButton(
-                  
-                  child: const Text(' DEFEITO '),
-                  style: TextButton.styleFrom(
-                      backgroundColor: AppColors.danger,
-                      primary: AppColors.white),
-                  onPressed: () {/* ... */},
+                SizedBox(
+                  width: 70,
+                  height: 40,
+                  child: TextButton(
+                    child: const Text(' DEFEITO '),
+                    style: TextButton.styleFrom(
+                        backgroundColor: AppColors.danger,
+                        primary: AppColors.white),
+                    onPressed: () {/* ... */},
+                  ),
                 ),
                 const SizedBox(width: 8),
               ],
