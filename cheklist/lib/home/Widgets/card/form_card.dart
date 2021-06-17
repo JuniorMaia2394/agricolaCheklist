@@ -7,9 +7,9 @@ class FormCard extends StatelessWidget {
   final String cardNumber;
 
   const FormCard({
-    Key key,    
-    this.title,  
-    this.cardNumber,  
+    Key key,
+    this.title,
+    this.cardNumber,
   }) : super(key: key);
 
   @override
@@ -22,13 +22,13 @@ class FormCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                  '$cardNumber',
-                  style: AppTextStyles.cardNumber,
+                '$cardNumber',
+                style: AppTextStyles.cardNumber,
               ),
             ),
             Text(
-                '$title',
-                style: AppTextStyles.label,
+              '$title',
+              style: AppTextStyles.label,
             ),
           ]),
           Icon(
@@ -38,23 +38,25 @@ class FormCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                TextButton(
-                  child: const Text('OK'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: AppColors.success,
-                    primary: AppColors.white 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextButton(
+                    child: const Text('OK'),
+                    style: TextButton.styleFrom(
+                        backgroundColor: AppColors.success,
+                        primary: AppColors.white),
+                    onPressed: () {/* ... */},
                   ),
-                  onPressed: () {/* ... */},
                 ),
                 const SizedBox(width: 8),
                 TextButton(
-                  child: const Text('DEFEITO'),
+                  
+                  child: const Text(' DEFEITO '),
                   style: TextButton.styleFrom(
-                    backgroundColor: AppColors.danger,
-                    primary: AppColors.white
-                  ),
+                      backgroundColor: AppColors.danger,
+                      primary: AppColors.white),
                   onPressed: () {/* ... */},
                 ),
                 const SizedBox(width: 8),
@@ -64,5 +66,5 @@ class FormCard extends StatelessWidget {
         ],
       ),
     );
-}
+  }
 }
