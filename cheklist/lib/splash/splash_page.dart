@@ -1,6 +1,7 @@
+import 'package:cheklist/core/app_colors.dart';
+import 'package:cheklist/core/core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cheklist/core/app_gradients.dart';
 import 'package:cheklist/home/home_page.dart';
 
 class SplashPage extends StatelessWidget {
@@ -12,9 +13,28 @@ class SplashPage extends StatelessWidget {
     ));
     return Scaffold(
       body: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
-          gradient: AppGradients.linear,
+          color: AppColors.success
         ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.agriculture,
+                    color: AppColors.white,
+                    size: 100,
+                  ),
+                  Text('Revisão de tratores', style: AppTextStyles.splashScreen)
+                ],
+              ),
+            )
+          ],
+        )
       ),
     );
   }

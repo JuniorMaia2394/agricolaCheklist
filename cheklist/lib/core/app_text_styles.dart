@@ -27,4 +27,11 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w700,
   );
+
+  static final TextStyle splashScreen = GoogleFonts.inter(
+    color: AppColors.white,
+    fontSize: 26,
+    fontWeight: FontWeight.w700,
+  );
+
 }
