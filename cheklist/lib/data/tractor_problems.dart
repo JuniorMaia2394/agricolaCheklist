@@ -10,7 +10,5 @@ const TRACTOR_PROBLEMS = {
     id: '2',
     title: 'Nível da água',
     imageURL: 'https://avatars.githubusercontent.com/u/37161267?v=4',
-    
-
   )
 };

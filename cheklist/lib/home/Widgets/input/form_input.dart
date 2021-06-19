@@ -25,13 +25,13 @@ class FormInput extends StatelessWidget {
         fillColor: AppColors.font,
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(8.0),
           borderSide: BorderSide(
             color: AppColors.lightPrimary,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(8.0),
           borderSide: BorderSide(
             color: AppColors.gray,
             width: 1.0,

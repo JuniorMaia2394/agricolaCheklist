@@ -46,16 +46,18 @@ class CustomFormState extends State<CustomForm> {
                   itemBuilder: (ctx, problem) => Padding(
                         padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
                         child: FormCard(
-                          title: tractorProblemsData.values
-                              .elementAt(problem)
-                              .title,
+                          title: 
+                            tractorProblemsData.values.elementAt(problem).title,
                           cardNumber:
-                              tractorProblemsData.values.elementAt(problem).id,
+                            tractorProblemsData.values.elementAt(problem).id,
                         ),
                       )),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                 child: FloatingActionButton.extended(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)
+                  ),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

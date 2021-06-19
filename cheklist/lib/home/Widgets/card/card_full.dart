@@ -18,7 +18,13 @@ class CardFull extends StatefulWidget {
 }
 
 class _CardFullState extends State<CardFull> {
-  var _cor = AppColors.white;
+  var _cardBorderColor = AppColors.white;
+
+  var _successBorderColor = AppColors.success;
+  var _successButtonBackgroundColor = AppColors.success;
+  
+  var _dangerBorderColor = AppColors.danger;
+  var _dangerButtonBackgroundColor = AppColors.danger;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +33,9 @@ class _CardFullState extends State<CardFull> {
 
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(8.0),
         side: BorderSide(
-          color: _cor,
+          color: _cardBorderColor,
           width: 2.0,
         ),
       ),
@@ -54,7 +60,7 @@ class _CardFullState extends State<CardFull> {
             size: 100,
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -64,35 +70,58 @@ class _CardFullState extends State<CardFull> {
                     width: 70,
                     height: 40,
                     child: ElevatedButton(
-                      child: const Text('OK'),
-                      style: TextButton.styleFrom(
-                          backgroundColor: AppColors.success,
-                          primary: AppColors.white),
+                      child: Text('OK', style: AppTextStyles.button),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(_successButtonBackgroundColor),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              side: BorderSide(
+                                color: _successBorderColor,
+                                width: 2.0,
+                              ),
+                            )
+                          ),
+                      ),
                       onPressed: () {
                         setState(() {
-                          _cor = AppColors.success;
+                          _cardBorderColor = AppColors.darkSuccess;
+                          _successBorderColor = AppColors.darkSuccess;
+                          _successButtonBackgroundColor = AppColors.lightSuccess;
+                          _dangerBorderColor = AppColors.lightDanger;
+                          _dangerButtonBackgroundColor = AppColors.lightDanger;
                         });
                       },
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
                 SizedBox(
-                  width: 70,
                   height: 40,
                   child: ElevatedButton(
-                    child: const Text('DEFEITO'),
-                    style: TextButton.styleFrom(
-                        backgroundColor: AppColors.danger,
-                        primary: AppColors.white),
+                    child: Text('DEFEITO', style: AppTextStyles.button),
+                    style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(_dangerButtonBackgroundColor),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              side: BorderSide(
+                                color: _dangerBorderColor,
+                                width: 2.0,
+                              ),
+                            )
+                          ),
+                      ),
                     onPressed: () {
                       setState(() {
-                        _cor = AppColors.danger;
+                        _cardBorderColor = AppColors.darkDanger;
+                        _successBorderColor = AppColors.lightSuccess;
+                        _successButtonBackgroundColor = AppColors.lightSuccess;
+                        _dangerBorderColor = AppColors.darkDanger;
+                        _dangerButtonBackgroundColor = AppColors.lightDanger;
                       });
                     },
                   ),
                 ),
-                const SizedBox(width: 8),
               ],
             ),
           ),

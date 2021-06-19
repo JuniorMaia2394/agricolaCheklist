@@ -22,6 +22,12 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
   
+  static final TextStyle button = GoogleFonts.inter(
+    color: AppColors.white,
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+  );
+  
   static final TextStyle cardNumber = GoogleFonts.inter(
     color: AppColors.darkPrimary,
     fontSize: 18,
