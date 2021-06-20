@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +22,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: AppColors.primary,
       ),
       body: SafeArea(
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: CustomForm(),
-            ),
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: CustomForm(),
           ),
+        ),
       ),
     );
   }

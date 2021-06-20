@@ -28,51 +28,53 @@ class CustomFormState extends State<CustomForm> {
     return Form(
       key: _formKey,
       child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: FormInput(label: 'Nome do tratorista'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: FormInput(label: 'Identificação do trator'),
-              ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: tractorProblemsData.length,
-                  itemBuilder: (ctx, problem) => Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
-                        child: FormCard(
-                          title: 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FormInput(label: 'Nome do tratorista'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FormInput(label: 'Identificação do trator'),
+            ),
+            ListView.builder(
+                //teste
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: tractorProblemsData.length,
+                itemBuilder: (ctx, problem) => Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+                      child: FormCard(
+                        title:
                             tractorProblemsData.values.elementAt(problem).title,
-                          cardNumber:
+                        cardNumber:
                             tractorProblemsData.values.elementAt(problem).id,
-                          image:
-                            tractorProblemsData.values.elementAt(problem).imageURL,
-                        ),
-                      )),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: FloatingActionButton.extended(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Enviando os dados'),
-                          backgroundColor: AppColors.darkPrimary));
-                    }
-                  },
-                  label: const Text('Confirmar'),
-                  icon: Icon(Icons.thumb_up),
-                ),
+                        image: tractorProblemsData.values
+                            .elementAt(problem)
+                            .imageURL,
+                      ),
+                    )),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: FloatingActionButton.extended(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Enviando os dados'),
+                        backgroundColor: AppColors.darkPrimary));
+                  }
+                },
+                label: const Text('Confirmar'),
+                icon: Icon(Icons.thumb_up),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     );
   }
 }
