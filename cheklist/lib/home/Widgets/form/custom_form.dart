@@ -27,8 +27,7 @@ class CustomFormState extends State<CustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: SingleChildScrollView(
-        child: Container(
+      child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -50,6 +49,8 @@ class CustomFormState extends State<CustomForm> {
                             tractorProblemsData.values.elementAt(problem).title,
                           cardNumber:
                             tractorProblemsData.values.elementAt(problem).id,
+                          image:
+                            tractorProblemsData.values.elementAt(problem).imageURL,
                         ),
                       )),
               Padding(
@@ -72,7 +73,6 @@ class CustomFormState extends State<CustomForm> {
             ],
           ),
         ),
-      ),
     );
   }
 }
