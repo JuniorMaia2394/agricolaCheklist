@@ -2,15 +2,17 @@ import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/core/app_text_styles.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:sizer/sizer.dart';
 class FormCard extends StatefulWidget {
   final String title;
   final String cardNumber;
+  final String image;
 
   const FormCard({
     Key key,
     this.title,
     this.cardNumber,
+    this.image,
   }) : super(key: key);
 
   @override
@@ -53,9 +55,19 @@ class _FormCardState extends State<FormCard> {
               style: AppTextStyles.label,
             ),
           ]),
-          Icon(
-            Icons.agriculture,
-            size: 100,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
+            child: Container(
+              width: 80.w,
+              height: 40.h,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(widget.image)
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(8.0))
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
@@ -65,7 +77,7 @@ class _FormCardState extends State<FormCard> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: SizedBox(
-                    width: 70,
+                    width: 80,
                     height: 40,
                     child: ElevatedButton(
                       child: Text('OK', style: AppTextStyles.button),

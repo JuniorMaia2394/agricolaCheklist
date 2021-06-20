@@ -1,6 +1,6 @@
-import 'package:cheklist/core/app_text_styles.dart';
 import 'package:cheklist/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:cheklist/home/Widgets/form/custom_form.dart';
 
@@ -22,7 +22,15 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
         backgroundColor: AppColors.primary,
       ),
-      body: CustomForm()
+      body: SafeArea(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              child: CustomForm(),
+            ),
+          ),
+      ),
     );
   }
 }
