@@ -60,12 +60,12 @@ class _FormCardState extends State<FormCard> {
             child: Container(
               width: 80.w,
               height: 40.h,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(widget.image)
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  widget.image,
+                  fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8.0))
               ),
             ),
           ),
