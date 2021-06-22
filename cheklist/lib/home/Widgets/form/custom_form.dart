@@ -33,7 +33,10 @@ class CustomFormState extends State<CustomForm> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FormInput(label: 'Nome do tratorista'),
+              child: FormInput(
+                label: 'Nome do tratorista',
+                maxLength: 40,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),

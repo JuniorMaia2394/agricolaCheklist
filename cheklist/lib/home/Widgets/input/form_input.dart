@@ -4,10 +4,12 @@ import 'package:cheklist/core/core.dart';
 
 class FormInput extends StatelessWidget {
   final String label;
+  final int maxLength;
 
   const FormInput({
     Key key,    
-    this.label,  
+    this.label,
+    this.maxLength
   }) : super(key: key);
 
   @override
@@ -20,10 +22,18 @@ class FormInput extends StatelessWidget {
         }
         return null;
       },
+      maxLength: maxLength,
       decoration: InputDecoration(
         labelText: '$label',
         fillColor: AppColors.font,
         border: OutlineInputBorder(),
+        counterText: '',
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: AppColors.lightDanger,
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: BorderSide(
