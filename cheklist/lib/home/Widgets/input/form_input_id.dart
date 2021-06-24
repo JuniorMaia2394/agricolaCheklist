@@ -1,19 +1,34 @@
+import 'package:cheklist/helpers/uppercaseTextFormatter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cheklist/core/core.dart';
 
-class FormInput extends StatelessWidget {
+class FormInputId extends StatefulWidget {
   final String label;
   final int maxLength;
+  final TextEditingController tractorIdController;
+  final bool validator;
 
-  const FormInput({
+  const FormInputId({
     Key key,    
     this.label,
-    this.maxLength
+    this.maxLength,
+    this.tractorIdController,
+    this.validator
   }) : super(key: key);
 
   @override
+  FormInputIdState createState() {
+    return FormInputIdState();
+  }
+}
+
+class FormInputIdState extends State<FormInputId> {
+
+ 
+  @override
   Widget build(BuildContext context) {
+
     return TextFormField(
       // The validator receives the text that the user has entered.
       validator: (value) {
@@ -22,9 +37,13 @@ class FormInput extends StatelessWidget {
         }
         return null;
       },
-      maxLength: maxLength,
+      maxLength: widget.maxLength,
+      controller: widget.tractorIdController,
+      inputFormatters: [
+        UppercaseTextFormatter()
+      ],
       decoration: InputDecoration(
-        labelText: '$label',
+        labelText: widget.label,
         fillColor: AppColors.font,
         border: OutlineInputBorder(),
         counterText: '',
