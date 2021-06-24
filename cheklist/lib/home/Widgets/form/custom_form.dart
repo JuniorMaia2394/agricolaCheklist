@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cheklist/api/pdf_api.dart';
+import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
 import 'package:cheklist/home/Widgets/input/form_input.dart';
@@ -66,7 +68,11 @@ class CustomFormState extends State<CustomForm> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                      onPressed: _createPDF,
+                      onPressed: () async {
+                        final pdfFile = await PdfParagraphApi.generate();
+
+                        PdfApi.openFile(pdfFile);
+                      },
                       child: Text("Salvar"),
                     ),
                   ),
@@ -93,21 +99,38 @@ class CustomFormState extends State<CustomForm> {
   }
 }
 
-Future<void> _createPDF() async {
-  PdfDocument document = PdfDocument();
-  final page = document.pages.add();
+// Future<void> _createPDF() async {
+//   PdfDocument document = PdfDocument();
+//   final page = document.pages.add();
 
-  page.graphics.drawString(
-    "CEFAT - CENTRO DE TREINAMENTO AGRÍCOLA FAMOSA",
-    PdfStandardFont(PdfFontFamily.helvetica, 15, style: PdfFontStyle.bold),
-    bounds: Rect.fromLTRB(50, 0, 0, 0),
-  );
+//   page.graphics.drawString(
+//     "CEFAT - CENTRO DE TREINAMENTO AGRÍCOLA FAMOSA",
+//     PdfStandardFont(PdfFontFamily.helvetica, 15, style: PdfFontStyle.bold),
+//     bounds: Rect.fromLTRB(50, 0, 0, 0),
+//   );
 
-  // page.graphics.drawString("Nome:",
-  //     PdfStandardFont(PdfFontFamily.courier, 10, style: PdfFontStyle.regular));
 
-  List<int> bytes = document.save();
-  document.dispose();
+//   // PdfGrid grid = PdfGrid();
 
-  saveAndLaunchFile(bytes, 'Output.pdf');
-}
+//   // grid.columns.add(count: 3);
+//   // grid.headers.add(1);
+
+//   // PdfGridRow header = grid.headers[0];
+//   // header.cells[0].value = 'Nome';
+//   // header.cells[1].value = 'Prefixo Trator';
+//   // header.cells[2].value = 'Status';
+
+//   // PdfGridRow row = grid.rows.add();
+//   // row.cells[0].value = 'Hélio Victor';
+//   // row.cells[1].value = 'AF-240';
+//   // row.cells[2].value = 'OK';
+
+//   // grid.draw(
+//   //   page: document.pages.add(),
+//   // );
+
+//   List<int> bytes = document.save();
+//   document.dispose();
+
+//   saveAndLaunchFile(bytes, 'Output.pdf');
+//}
