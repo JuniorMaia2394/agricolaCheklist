@@ -2,13 +2,15 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:cheklist/api/pdf_api.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 class PdfParagraphApi {
   static Future<File> generate() async {
     final pdf = Document();
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd/MM/yyyy , kk:mm').format(now);
 
     pdf.addPage(
       MultiPage(
@@ -50,6 +52,7 @@ class PdfParagraphApi {
         },
       ),
     );
+
     return PdfApi.saveDocument(name: 'my_example.pdf', pdf: pdf);
   }
 }
