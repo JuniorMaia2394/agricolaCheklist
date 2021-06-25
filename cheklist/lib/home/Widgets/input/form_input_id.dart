@@ -7,14 +7,12 @@ class FormInputId extends StatefulWidget {
   final String label;
   final int maxLength;
   final TextEditingController tractorIdController;
-  final bool validator;
 
   const FormInputId({
     Key key,    
     this.label,
     this.maxLength,
     this.tractorIdController,
-    this.validator
   }) : super(key: key);
 
   @override
@@ -25,7 +23,6 @@ class FormInputId extends StatefulWidget {
 
 class FormInputIdState extends State<FormInputId> {
 
- 
   @override
   Widget build(BuildContext context) {
 
@@ -33,7 +30,7 @@ class FormInputIdState extends State<FormInputId> {
       // The validator receives the text that the user has entered.
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Por favor, digite um valor válido.';
+          return 'Por favor, digite uma indentificação válida.';
         }
         return null;
       },
@@ -44,6 +41,7 @@ class FormInputIdState extends State<FormInputId> {
       ],
       decoration: InputDecoration(
         labelText: widget.label,
+        hintText: 'AF-1233',
         fillColor: AppColors.font,
         border: OutlineInputBorder(),
         counterText: '',

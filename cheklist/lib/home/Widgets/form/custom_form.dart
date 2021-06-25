@@ -72,7 +72,7 @@ class CustomFormState extends State<CustomForm> {
                 onPressed: () {
                   RegExp tractorIdValidator = new RegExp(r"^(AF|AL)-[0-9]{4}$");
                   Iterable<Match> matches = tractorIdValidator.allMatches(_tractorId.text);
-  
+
                   if (_formKey.currentState.validate() && matches.length > 0) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text('Enviando os dados'),
