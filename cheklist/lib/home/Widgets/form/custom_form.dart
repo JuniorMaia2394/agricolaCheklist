@@ -4,7 +4,8 @@ import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
-import 'package:cheklist/home/Widgets/input/form_input.dart';
+import 'package:cheklist/home/Widgets/input/form_input_id.dart';
+import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -29,6 +30,7 @@ class CustomFormState extends State<CustomForm> {
   // not a GlobalKey<CustomFormState>.
   final tractorProblemsData = {...TRACTOR_PROBLEMS};
   final _formKey = GlobalKey<FormState>();
+  final _tractorId = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +43,18 @@ class CustomFormState extends State<CustomForm> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FormInput(label: 'Nome do tratorista'),
+              child: FormInputName(
+                label: 'Nome do tratorista',
+                maxLength: 40,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: FormInput(label: 'Identificação do trator'),
+              child: FormInputId(
+                label: 'Identificação do trator',
+                tractorIdController: _tractorId,
+                maxLength: 7
+              ),
             ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -80,7 +89,10 @@ class CustomFormState extends State<CustomForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     onPressed: () {
-                      if (_formKey.currentState.validate()) {
+                      RegExp tractorIdValidator = new RegExp(r"^(AF|AL)-[0-9]{4}$");
+                      Iterable<Match> matches = tractorIdValidator.allMatches(_tractorId.text);
+
+                      if (_formKey.currentState.validate() && matches.length > 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Enviando os dados'),
                             backgroundColor: AppColors.darkPrimary));
