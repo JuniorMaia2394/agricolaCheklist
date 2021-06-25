@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
@@ -7,10 +5,6 @@ import 'package:cheklist/data/tractor_problems.dart';
 import 'package:cheklist/home/Widgets/input/form_input.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
-import 'package:cheklist/mobile.dart';
-
-import 'package:pdf/widgets.dart' as pw;
 
 class CustomForm extends StatefulWidget {
   @override
@@ -98,39 +92,3 @@ class CustomFormState extends State<CustomForm> {
     );
   }
 }
-
-// Future<void> _createPDF() async {
-//   PdfDocument document = PdfDocument();
-//   final page = document.pages.add();
-
-//   page.graphics.drawString(
-//     "CEFAT - CENTRO DE TREINAMENTO AGRÍCOLA FAMOSA",
-//     PdfStandardFont(PdfFontFamily.helvetica, 15, style: PdfFontStyle.bold),
-//     bounds: Rect.fromLTRB(50, 0, 0, 0),
-//   );
-
-
-//   // PdfGrid grid = PdfGrid();
-
-//   // grid.columns.add(count: 3);
-//   // grid.headers.add(1);
-
-//   // PdfGridRow header = grid.headers[0];
-//   // header.cells[0].value = 'Nome';
-//   // header.cells[1].value = 'Prefixo Trator';
-//   // header.cells[2].value = 'Status';
-
-//   // PdfGridRow row = grid.rows.add();
-//   // row.cells[0].value = 'Hélio Victor';
-//   // row.cells[1].value = 'AF-240';
-//   // row.cells[2].value = 'OK';
-
-//   // grid.draw(
-//   //   page: document.pages.add(),
-//   // );
-
-//   List<int> bytes = document.save();
-//   document.dispose();
-
-//   saveAndLaunchFile(bytes, 'Output.pdf');
-//}

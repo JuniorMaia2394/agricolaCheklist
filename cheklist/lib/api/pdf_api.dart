@@ -7,7 +7,6 @@ import 'package:pdf/widgets.dart';
 class PdfApi {
   static Future<File> generateCenteredText(String text) async {
     final pdf = Document();
-    
 
     pdf.addPage(Page(
       build: (context) => Center(
