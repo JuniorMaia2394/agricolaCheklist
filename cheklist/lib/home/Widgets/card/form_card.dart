@@ -3,6 +3,7 @@ import 'package:cheklist/core/app_text_styles.dart';
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+
 class FormCard extends StatefulWidget {
   final String title;
   final String cardNumber;
@@ -24,13 +25,12 @@ class _FormCardState extends State<FormCard> {
 
   var _successBorderColor = AppColors.success;
   var _successButtonBackgroundColor = AppColors.success;
-  
+
   var _dangerBorderColor = AppColors.danger;
   var _dangerButtonBackgroundColor = AppColors.danger;
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -82,22 +82,24 @@ class _FormCardState extends State<FormCard> {
                     child: ElevatedButton(
                       child: Text('OK', style: AppTextStyles.button),
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(_successButtonBackgroundColor),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(
-                                color: _successBorderColor,
-                                width: 2.0,
-                              ),
-                            )
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            _successButtonBackgroundColor),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          side: BorderSide(
+                            color: _successBorderColor,
+                            width: 2.0,
                           ),
+                        )),
                       ),
                       onPressed: () {
                         setState(() {
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
-                          _successButtonBackgroundColor = AppColors.lightSuccess;
+                          _successButtonBackgroundColor =
+                              AppColors.lightSuccess;
                           _dangerBorderColor = AppColors.lightDanger;
                           _dangerButtonBackgroundColor = AppColors.lightDanger;
                         });
@@ -110,17 +112,17 @@ class _FormCardState extends State<FormCard> {
                   child: ElevatedButton(
                     child: Text('DEFEITO', style: AppTextStyles.button),
                     style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(_dangerButtonBackgroundColor),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(
-                                color: _dangerBorderColor,
-                                width: 2.0,
-                              ),
-                            )
-                          ),
-                      ),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          _dangerButtonBackgroundColor),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(
+                          color: _dangerBorderColor,
+                          width: 2.0,
+                        ),
+                      )),
+                    ),
                     onPressed: () {
                       setState(() {
                         _cardBorderColor = AppColors.darkDanger;
