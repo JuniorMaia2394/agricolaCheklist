@@ -24,6 +24,7 @@ class CustomFormState extends State<CustomForm> {
   // not a GlobalKey<CustomFormState>.
   final tractorProblemsData = {...TRACTOR_PROBLEMS};
   final _formKey = GlobalKey<FormState>();
+  final _name = new TextEditingController();
   final _tractorId = new TextEditingController();
 
   @override
@@ -40,6 +41,7 @@ class CustomFormState extends State<CustomForm> {
               child: FormInputName(
                 label: 'Nome do tratorista',
                 maxLength: 40,
+                nameController: _name,
               ),
             ),
             Padding(
@@ -88,8 +90,25 @@ class CustomFormState extends State<CustomForm> {
 
                       if (_formKey.currentState.validate() && matches.length > 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Enviando os dados'),
+                            content: Text('Enviando os dados...'),
                             backgroundColor: AppColors.darkPrimary));
+                        showDialog(
+                          context: context, 
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Column( children: [
+                                Text('name: ' + _name.text),
+                                Text('Identificação: ' + _tractorId.text)
+                              ],
+                            )
+                           );
+                          }
+                        );
+                      }
+                      else if (!_formKey.currentState.validate() || matches.length > 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Erro no envio dos dados!'),
+                            backgroundColor: AppColors.darkDanger));
                       }
                     },
                     label: const Text('Confirmar'),
