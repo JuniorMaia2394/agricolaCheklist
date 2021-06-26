@@ -29,6 +29,8 @@ class _FormCardState extends State<FormCard> {
   var _dangerBorderColor = AppColors.danger;
   var _dangerButtonBackgroundColor = AppColors.danger;
 
+  var _tractorProblemController = "OK";
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -96,6 +98,7 @@ class _FormCardState extends State<FormCard> {
                       ),
                       onPressed: () {
                         setState(() {
+                          _tractorProblemController = "Ok";
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
                           _successButtonBackgroundColor =
@@ -125,6 +128,7 @@ class _FormCardState extends State<FormCard> {
                     ),
                     onPressed: () {
                       setState(() {
+                        _tractorProblemController = 'Defeito';
                         _cardBorderColor = AppColors.darkDanger;
                         _successBorderColor = AppColors.lightSuccess;
                         _successButtonBackgroundColor = AppColors.lightSuccess;
