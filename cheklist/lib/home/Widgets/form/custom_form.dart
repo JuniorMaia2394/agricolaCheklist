@@ -105,7 +105,7 @@ class CustomFormState extends State<CustomForm> {
                           }
                         );
                       }
-                      else if (!_formKey.currentState.validate() || matches.length > 0) {
+                      else if (!_formKey.currentState.validate() || matches.length == 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Erro no envio dos dados!'),
                             backgroundColor: AppColors.darkDanger));
