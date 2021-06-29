@@ -1,4 +1,4 @@
-# cheklist
+# checklist
 
 A new Flutter project.
 
