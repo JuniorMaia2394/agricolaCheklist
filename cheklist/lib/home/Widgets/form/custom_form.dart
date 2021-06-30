@@ -2,6 +2,7 @@ import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/home/Widgets/button/xls_button.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
@@ -70,17 +71,6 @@ class CustomFormState extends State<CustomForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final pdfFile = await PdfParagraphApi.generate();
-
-                        PdfApi.openFile(pdfFile);
-                      },
-                      child: Text("Salvar"),
-                    ),
-                  ),
                   FloatingActionButton.extended(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
@@ -96,9 +86,38 @@ class CustomFormState extends State<CustomForm> {
                           context: context, 
                           builder: (context) {
                             return AlertDialog(
-                              content: Column( children: [
-                                Text('name: ' + _name.text),
-                                Text('Identificação: ' + _tractorId.text)
+                              content: Column(
+                                children: [
+                                  // Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: [
+                                  //   ],
+                                  // ),
+                                      Text('Nome: ' + _name.text),
+                                      Text('Identificação: ' + _tractorId.text),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        XlsButton(
+                                          label: 'Gerar planilha',
+                                          fileName: 'TractorProblemsRecord',
+                                          fieldName: _name.text,
+                                          fieldTractorIdentification: _tractorId.text
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () async {
+                                            final pdfFile = await PdfParagraphApi.generate();
+
+                                            PdfApi.openFile(pdfFile);
+                                          },
+                                          child: Text("Gerar PDF"),
+                                        ),
+                                      ],
+                                    ),
+                                  )
                               ],
                             )
                            );
