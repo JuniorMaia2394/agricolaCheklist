@@ -71,17 +71,6 @@ class CustomFormState extends State<CustomForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final pdfFile = await PdfParagraphApi.generate();
-
-                        PdfApi.openFile(pdfFile);
-                      },
-                      child: Text("Salvar"),
-                    ),
-                  ),
                   FloatingActionButton.extended(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
@@ -97,15 +86,38 @@ class CustomFormState extends State<CustomForm> {
                           context: context, 
                           builder: (context) {
                             return AlertDialog(
-                              content: Column( children: [
-                                Text('name: ' + _name.text),
-                                Text('Identificação: ' + _tractorId.text),
-                                XlsButton(
-                                  label: 'Gerar planilha',
-                                  fileName: 'TractorProblemsRecord',
-                                  fieldName: _name.text,
-                                  fieldTractorIdentification: _tractorId.text
-                                )
+                              content: Column(
+                                children: [
+                                  // Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: [
+                                  //   ],
+                                  // ),
+                                      Text('Nome: ' + _name.text),
+                                      Text('Identificação: ' + _tractorId.text),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        XlsButton(
+                                          label: 'Gerar planilha',
+                                          fileName: 'TractorProblemsRecord',
+                                          fieldName: _name.text,
+                                          fieldTractorIdentification: _tractorId.text
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () async {
+                                            final pdfFile = await PdfParagraphApi.generate();
+
+                                            PdfApi.openFile(pdfFile);
+                                          },
+                                          child: Text("Gerar PDF"),
+                                        ),
+                                      ],
+                                    ),
+                                  )
                               ],
                             )
                            );
@@ -121,12 +133,6 @@ class CustomFormState extends State<CustomForm> {
                     label: const Text('Confirmar'),
                     icon: Icon(Icons.thumb_up),
                   ),
-                  // XlsButton(
-                  //   label: 'Gerar planilha',
-                  //   fileName: 'TractorProblemsRecord',
-                  //   fieldName: _name.text,
-                  //   fieldTractorIdentification: _tractorId.text
-                  // )
                 ],
               ),
             ),
