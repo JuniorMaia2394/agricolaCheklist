@@ -2,6 +2,7 @@ import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/home/Widgets/button/xls_button.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
@@ -98,7 +99,13 @@ class CustomFormState extends State<CustomForm> {
                             return AlertDialog(
                               content: Column( children: [
                                 Text('name: ' + _name.text),
-                                Text('Identificação: ' + _tractorId.text)
+                                Text('Identificação: ' + _tractorId.text),
+                                XlsButton(
+                                  label: 'Gerar planilha',
+                                  fileName: 'TractorProblemsRecord',
+                                  fieldName: _name.text,
+                                  fieldTractorIdentification: _tractorId.text
+                                )
                               ],
                             )
                            );
@@ -114,6 +121,12 @@ class CustomFormState extends State<CustomForm> {
                     label: const Text('Confirmar'),
                     icon: Icon(Icons.thumb_up),
                   ),
+                  // XlsButton(
+                  //   label: 'Gerar planilha',
+                  //   fileName: 'TractorProblemsRecord',
+                  //   fieldName: _name.text,
+                  //   fieldTractorIdentification: _tractorId.text
+                  // )
                 ],
               ),
             ),
