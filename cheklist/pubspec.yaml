@@ -32,6 +32,8 @@ dependencies:
   sizer: ^2.0.13
   mask_text_input_formatter: ^2.0.0
   syncfusion_flutter_pdf: ^19.1.69-beta
+  syncfusion_flutter_xlsio: ^19.1.69-beta
+  universal_html: ^2.0.8
 
 dev_dependencies:
   flutter_test:

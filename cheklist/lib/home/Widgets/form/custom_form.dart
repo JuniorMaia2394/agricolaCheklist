@@ -2,6 +2,7 @@ import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/home/Widgets/button/xls_button.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
@@ -69,18 +70,6 @@ class CustomFormState extends State<CustomForm> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final pdfFile = await PdfTemplate.generate(
-                            _name.text, _tractorId.text);
-
-                        PdfApi.openFile(pdfFile);
-                      },
-                      child: Text("Salvar"),
-                    ),
-                  ),
                   FloatingActionButton.extended(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
@@ -89,13 +78,51 @@ class CustomFormState extends State<CustomForm> {
                           new RegExp(r"^(AF|AL)-[0-9]{4}$");
                       Iterable<Match> matches =
                           tractorIdValidator.allMatches(_tractorId.text);
+                      
+                      if (_formKey.currentState.validate() && matches.length > 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Enviando os dados...'),
+                            backgroundColor: AppColors.darkPrimary));
+                        showDialog(
+                          context: context, 
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Column(
+                                children: [
+                                  // Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: [
+                                  //   ],
+                                  // ),
+                                      Text('Nome: ' + _name.text),
+                                      Text('Identificação: ' + _tractorId.text),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        XlsButton(
+                                          label: 'Gerar planilha',
+                                          fileName: 'TractorProblemsRecord',
+                                          fieldName: _name.text,
+                                          fieldTractorIdentification: _tractorId.text
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () async {
+                                            final pdfFile = await PdfParagraphApi.generate();
 
-                      if (_formKey.currentState.validate() &&
-                          matches.length > 0) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text('Enviando os dados...'),
-                              backgroundColor: AppColors.darkPrimary),
+                                            PdfApi.openFile(pdfFile);
+                                          },
+                                          child: Text("Gerar PDF"),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                              ],
+                            )
+                           );
+                          }
                         );
                         showDialog(
                             context: context,
