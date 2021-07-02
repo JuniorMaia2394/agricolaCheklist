@@ -7,25 +7,32 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
-class PdfParagraphApi {
-  static Future<File> generate() async {
+class PdfTemplate {
+  final name;
+  final prefixtrat;
+
+  const PdfTemplate({final this.name, final this.prefixtrat});
+
+  static Future<File> generate(name, prefixTrat) async {
     final pdf = Document();
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('dd/MM/yyyy , kk:mm').format(now);
+    String formattedDate = DateFormat('dd/MM/yyyy').format(now);
+    String formattedHour = DateFormat('kk:mm').format(now);
 
     pdf.addPage(
       MultiPage(
         build: (context) => <Widget>[
           Text('Data: $formattedDate'),
+          Text('Hora: $formattedHour'),
           SizedBox(height: 8),
           buildTtitle(),
           Divider(),
           Paragraph(
-            text: 'NOME TRATORISTA: ',
+            text: 'NOME TRATORISTA: $name',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Paragraph(
-            text: 'PREFIXO TRATOR: ',
+            text: 'PREFIXO TRATOR: $prefixTrat',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -69,7 +76,7 @@ class PdfParagraphApi {
     return Table.fromTextArray(
       headers: headers,
       data: data
-          .map((tractor) => [tractor.id, tractor.title, tractor.imageURL])
+          .map((tractor) => [tractor.id, tractor.title, tractor.status])
           .toList(),
       border: null,
       headerStyle: TextStyle(fontWeight: FontWeight.bold),

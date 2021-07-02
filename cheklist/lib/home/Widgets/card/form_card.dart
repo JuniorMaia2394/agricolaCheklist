@@ -1,6 +1,6 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/core/app_text_styles.dart';
-
+import 'package:cheklist/data/tractor_problems.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -8,13 +8,11 @@ class FormCard extends StatefulWidget {
   final String title;
   final String cardNumber;
   final String image;
+  final String status;
 
-  const FormCard({
-    Key key,
-    this.title,
-    this.cardNumber,
-    this.image,
-  }) : super(key: key);
+  const FormCard(
+      {Key key, this.title, this.cardNumber, this.image, this.status})
+      : super(key: key);
 
   @override
   _FormCardState createState() => _FormCardState();
@@ -28,8 +26,6 @@ class _FormCardState extends State<FormCard> {
 
   var _dangerBorderColor = AppColors.danger;
   var _dangerButtonBackgroundColor = AppColors.danger;
-
-  var _tractorProblemController = "OK";
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +94,9 @@ class _FormCardState extends State<FormCard> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _tractorProblemController = "Ok";
+                          TRACTOR_PROBLEMS[widget.cardNumber]
+                              .updateStatus('OK');
+
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
                           _successButtonBackgroundColor =
@@ -128,7 +126,8 @@ class _FormCardState extends State<FormCard> {
                     ),
                     onPressed: () {
                       setState(() {
-                        _tractorProblemController = 'Defeito';
+                        TRACTOR_PROBLEMS[widget.cardNumber]
+                            .updateStatus('DEFEITO');
                         _cardBorderColor = AppColors.darkDanger;
                         _successBorderColor = AppColors.lightSuccess;
                         _successButtonBackgroundColor = AppColors.lightSuccess;

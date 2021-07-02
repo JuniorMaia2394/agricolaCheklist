@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 
 class TractorProblem {
-  final String id;
-  final String title;
-  final String imageURL;
+  String id;
+  String title;
+  String imageURL;
+  String status;
 
-  const TractorProblem({
+  TractorProblem({
     @required this.id,
     @required this.title,
     @required this.imageURL,
+    @required this.status,
   });
+
+  void updateStatus(String value ) {
+    this.status = value;
+  }
 }
