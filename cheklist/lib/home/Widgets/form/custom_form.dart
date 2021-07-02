@@ -48,10 +48,9 @@ class CustomFormState extends State<CustomForm> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: FormInputId(
-                label: 'Identificação do trator',
-                tractorIdController: _tractorId,
-                maxLength: 7
-              ),
+                  label: 'Identificação do trator',
+                  tractorIdController: _tractorId,
+                  maxLength: 7),
             ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -75,9 +74,11 @@ class CustomFormState extends State<CustomForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     onPressed: () {
-                      RegExp tractorIdValidator = new RegExp(r"^(AF|AL)-[0-9]{4}$");
-                      Iterable<Match> matches = tractorIdValidator.allMatches(_tractorId.text);
-
+                      RegExp tractorIdValidator =
+                          new RegExp(r"^(AF|AL)-[0-9]{4}$");
+                      Iterable<Match> matches =
+                          tractorIdValidator.allMatches(_tractorId.text);
+                      
                       if (_formKey.currentState.validate() && matches.length > 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Enviando os dados...'),
@@ -123,8 +124,19 @@ class CustomFormState extends State<CustomForm> {
                            );
                           }
                         );
-                      }
-                      else if (!_formKey.currentState.validate() || matches.length == 0) {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                  content: Column(
+                                children: [
+                                  Text('name: ' + _name.text),
+                                  Text('Identificação: ' + _tractorId.text)
+                                ],
+                              ));
+                            });
+                      } else if (!_formKey.currentState.validate() ||
+                          matches.length == 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Erro no envio dos dados!'),
                             backgroundColor: AppColors.darkDanger));
