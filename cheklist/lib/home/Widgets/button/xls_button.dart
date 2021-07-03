@@ -1,6 +1,5 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
-import 'package:cheklist/models/tractor_problem.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:flutter/material.dart';
@@ -56,28 +55,33 @@ class XlsButtonState extends State<XlsButton> {
     String formattedDate = DateFormat('dd/MM/yyyy').format(now);
     String formattedHour = DateFormat('kk:mm').format(now);
 
-    sheet.getRangeByName('A1').setText('nome_do_tratorista');
+    sheet.getRangeByName('A1').setText('Nome do tratorista');
     sheet.getRangeByName('A2').setText(widget.fieldName);
 
-    sheet.getRangeByName('B1').setText('identificacao_do_trator');
+    sheet.getRangeByName('B1').setText('Identificação do trator');
     sheet.getRangeByName('B2').setText(widget.fieldTractorIdentification);
     
-    sheet.getRangeByName('A4').setText('id');
+    sheet.getRangeByName('A4').setText('Id');
     for(var row = 0; row < data.length; row++) {
       var sheetRow = row + 5;
       sheet.getRangeByName('A$sheetRow').setText(data.values.elementAt(row).id);
     }
 
-    sheet.getRangeByName('B4').setText('descricao');
+    sheet.getRangeByName('B4').setText('Descrição');
     for(var row = 0; row < data.length; row++) {
       var sheetRow = row + 5;
       sheet.getRangeByName('B$sheetRow').setText(data.values.elementAt(row).title);
     }
 
-    sheet.getRangeByName('C4').setText('status');
-    sheet.getRangeByName('E1').setText('data_de_criacao');
+    sheet.getRangeByName('C4').setText('Status');
+    for(var row = 0; row < data.length; row++) {
+      var sheetRow = row + 5;
+      sheet.getRangeByName('C$sheetRow').setText(data.values.elementAt(row).status);
+    }
+
+    sheet.getRangeByName('E1').setText('Data de criação');
     sheet.getRangeByName('E2').setText('$formattedDate');
-    sheet.getRangeByName('F1').setText('hora_de_criacao');
+    sheet.getRangeByName('F1').setText('hora de criação');
     sheet.getRangeByName('F2').setText('$formattedHour');
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
