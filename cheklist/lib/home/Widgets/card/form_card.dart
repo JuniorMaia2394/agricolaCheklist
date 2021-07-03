@@ -48,9 +48,11 @@ class _FormCardState extends State<FormCard> {
                 style: AppTextStyles.cardNumber,
               ),
             ),
-            Text(
-              widget.title,
-              style: AppTextStyles.label,
+            Flexible(
+              child: Text(
+                widget.title,
+                style: AppTextStyles.label,
+              ),
             ),
           ]),
           Padding(
@@ -62,7 +64,7 @@ class _FormCardState extends State<FormCard> {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   widget.image,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
