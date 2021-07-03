@@ -8,12 +8,17 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 class PdfTemplate {
+  final fileName;
   final name;
   final prefixtrat;
 
-  const PdfTemplate({final this.name, final this.prefixtrat});
+  const PdfTemplate({
+    final this.name, 
+    final this.prefixtrat,
+    final this.fileName
+  });
 
-  static Future<File> generate(name, prefixTrat) async {
+  static Future<File> generate(name, prefixTrat, fileName) async {
     final pdf = Document();
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd/MM/yyyy').format(now);
@@ -55,7 +60,7 @@ class PdfTemplate {
       ),
     );
 
-    return PdfApi.saveDocument(name: 'my_example.pdf', pdf: pdf);
+    return PdfApi.saveDocument(name: '$fileName.pdf', pdf: pdf);
   }
 
   static Widget buildTtitle() => Column(
