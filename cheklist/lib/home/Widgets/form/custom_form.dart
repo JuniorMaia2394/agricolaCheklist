@@ -68,20 +68,20 @@ class CustomFormState extends State<CustomForm> {
                           new RegExp(r"^(AF|AL)-[0-9]{4}$");
                       Iterable<Match> matches =
                           tractorIdValidator.allMatches(_tractorId.text);
-                      
-                      if (_formKey.currentState.validate() && matches.length > 0) {
+
+                      if (_formKey.currentState.validate() &&
+                          matches.length > 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Enviando os dados...'),
                             backgroundColor: AppColors.darkPrimary));
                         showDialog(
-                          context: context, 
-                          builder: (context) {
-                            return CustomDialog(
-                              fieldName: _name.text,
-                              fieldTractorIdentification: _tractorId.text,
-                            );
-                          }
-                        );
+                            context: context,
+                            builder: (context) {
+                              return CustomDialog(
+                                fieldName: _name.text,
+                                fieldTractorIdentification: _tractorId.text,
+                              );
+                            });
                       } else if (!_formKey.currentState.validate() ||
                           matches.length == 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
