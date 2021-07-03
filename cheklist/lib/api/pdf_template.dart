@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/helpers/generateFilename.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -23,6 +24,7 @@ class PdfTemplate {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd/MM/yyyy').format(now);
     String formattedHour = DateFormat('kk:mm').format(now);
+    String generatedFilename = generateFilename(fileName);
 
     pdf.addPage(
       MultiPage(
@@ -60,7 +62,7 @@ class PdfTemplate {
       ),
     );
 
-    return PdfApi.saveDocument(name: '$fileName.pdf', pdf: pdf);
+    return PdfApi.saveDocument(name: '$generatedFilename.pdf', pdf: pdf);
   }
 
   static Widget buildTtitle() => Column(
