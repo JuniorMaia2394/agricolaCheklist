@@ -1,8 +1,6 @@
-import 'package:cheklist/api/pdf_api.dart';
-import 'package:cheklist/api/pdf_paragraph_api.dart';
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
-import 'package:cheklist/home/Widgets/button/xls_button.dart';
+import 'package:cheklist/home/Widgets/dialog/custom_dialog.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
@@ -15,14 +13,7 @@ class CustomForm extends StatefulWidget {
   }
 }
 
-// Define a corresponding State class.
-// This class holds data related to the form.
 class CustomFormState extends State<CustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<CustomFormState>.
   final tractorProblemsData = {...TRACTOR_PROBLEMS};
   final _formKey = GlobalKey<FormState>();
   final _name = new TextEditingController();
@@ -30,7 +21,6 @@ class CustomFormState extends State<CustomForm> {
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
       child: Container(
@@ -86,55 +76,12 @@ class CustomFormState extends State<CustomForm> {
                         showDialog(
                           context: context, 
                           builder: (context) {
-                            return AlertDialog(
-                              content: Column(
-                                children: [
-                                  // Column(
-                                  //   mainAxisAlignment: MainAxisAlignment.start,
-                                  //   children: [
-                                  //   ],
-                                  // ),
-                                      Text('Nome: ' + _name.text),
-                                      Text('Identificação: ' + _tractorId.text),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        XlsButton(
-                                          label: 'Gerar planilha',
-                                          fileName: 'TractorProblemsRecord',
-                                          fieldName: _name.text,
-                                          fieldTractorIdentification: _tractorId.text
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () async {
-                                            final pdfFile = await PdfParagraphApi.generate();
-
-                                            PdfApi.openFile(pdfFile);
-                                          },
-                                          child: Text("Gerar PDF"),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                              ],
-                            )
-                           );
+                            return CustomDialog(
+                              fieldName: _name.text,
+                              fieldTractorIdentification: _tractorId.text,
+                            );
                           }
                         );
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                  content: Column(
-                                children: [
-                                  Text('name: ' + _name.text),
-                                  Text('Identificação: ' + _tractorId.text)
-                                ],
-                              ));
-                            });
                       } else if (!_formKey.currentState.validate() ||
                           matches.length == 0) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

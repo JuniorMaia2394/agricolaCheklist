@@ -40,4 +40,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
   );
 
+  static final TextStyle dialog = GoogleFonts.inter(
+    color: AppColors.font,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+
 }

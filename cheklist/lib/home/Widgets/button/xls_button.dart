@@ -1,3 +1,4 @@
+import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
 import 'package:cheklist/models/tractor_problem.dart';
 import 'package:intl/intl.dart';
@@ -20,8 +21,8 @@ class XlsButton extends StatefulWidget {
     Key key,    
     @required this.label,
     @required this.fileName,
-    this.fieldName,
-    this.fieldTractorIdentification
+    @required this.fieldName,
+    @required this.fieldTractorIdentification
   }) : super(key: key);
 
   @override
@@ -34,7 +35,15 @@ class XlsButtonState extends State<XlsButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: createExcel, child: Text(widget.label));
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(12.0),
+        primary: AppColors.white,
+        textStyle: const TextStyle(fontSize: 20),
+      ),
+      onPressed: createExcel,
+      child: Text(widget.label),      
+    );
   }
 
   Future<void> createExcel() async {
