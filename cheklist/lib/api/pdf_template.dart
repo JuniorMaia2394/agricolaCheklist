@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -12,17 +13,14 @@ class PdfTemplate {
   final name;
   final prefixtrat;
 
-  const PdfTemplate({
-    final this.name, 
-    final this.prefixtrat,
-    final this.fileName
-  });
+  const PdfTemplate(
+      {final this.name, final this.prefixtrat, final this.fileName});
 
   static Future<File> generate(name, prefixTrat, fileName) async {
     final pdf = Document();
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd/MM/yyyy').format(now);
-    String formattedHour = DateFormat('kk:mm').format(now);
+    String formattedHour = DateFormat('HH:mm').format(now);
 
     pdf.addPage(
       MultiPage(
@@ -33,11 +31,11 @@ class PdfTemplate {
           buildTtitle(),
           Divider(),
           Paragraph(
-            text: 'NOME TRATORISTA: $name',
+            text: 'Nome do tratorista: $name',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Paragraph(
-            text: 'PREFIXO TRATOR: $prefixTrat',
+            text: 'Prefixo trator: $prefixTrat',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -63,14 +61,16 @@ class PdfTemplate {
     return PdfApi.saveDocument(name: '$fileName.pdf', pdf: pdf);
   }
 
-  static Widget buildTtitle() => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'CEFAT - CENTRO DE TREINAMENTO AGRÍCOLA FAMOSA',
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-          ),
-        ],
+  static Widget buildTtitle() => Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'CETAF - Centro de Treinamento Agrícola Famosa',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       );
 
   static buildTable() {
@@ -83,14 +83,16 @@ class PdfTemplate {
       data: data
           .map((tractor) => [tractor.id, tractor.title, tractor.status])
           .toList(),
-      border: null,
+      border: const TableBorder(
+        verticalInside: BorderSide(),
+      ),
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
       headerDecoration: BoxDecoration(color: PdfColors.grey300),
       cellHeight: 30,
-      cellPadding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+      cellPadding: EdgeInsets.symmetric(horizontal: 10),
       cellAlignments: {
         0: Alignment.centerLeft,
-        1: Alignment.centerRight,
+        1: Alignment.center,
         2: Alignment.center,
       },
     );

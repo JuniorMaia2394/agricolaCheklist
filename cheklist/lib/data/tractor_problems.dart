@@ -33,13 +33,13 @@ Map<String, TractorProblem> TRACTOR_PROBLEMS = {
   ),
   '6': TractorProblem(
     id: '6',
-    title: 'Verificar correia e tensor da ventuinha.',
+    title: 'Correia e tensor da ventuinha.',
     imageURL: 'assets/images/card/card_image_6.PNG',
     status: '',
   ),
   '7': TractorProblem(
     id: '7',
-    title: 'Água do reservatório do limpador de para-brisa se equipado.',
+    title: 'Água do reservatório limpador, para-brisa.',
     imageURL: 'assets/images/card/card_image_7.PNG',
     status: '',
   ),
@@ -51,27 +51,25 @@ Map<String, TractorProblem> TRACTOR_PROBLEMS = {
   ),
   '9': TractorProblem(
     id: '9',
-    title:
-        'Capas protetoras de alavancas de cambio, grupo, freios, TDP, TDA e entre outras.',
+    title: 'Capas protetoras.',
     imageURL: 'assets/images/card/card_image_9.jpeg',
     status: '',
   ),
   '10': TractorProblem(
     id: '10',
-    title: 'Realizar lubrificação a graxa a cada 10 horas \nde trabalho.',
+    title: 'Lubrificação a cada 10 horas de trabalho.',
     imageURL: 'assets/images/card/card_image_10.jpg',
     status: '',
   ),
   '11': TractorProblem(
     id: '11',
-    title:
-        'Suspiros, caixa de marcha, tampa do reservatório de freio, tampa tanque de combustível, tampa do bocal de enchimento do óleo hidráulico/trasmissão, eixo dianteiro e cubos traseiros.',
+    title: 'Verificar suspiros.',
     imageURL: 'assets/images/card/card_image_11.png',
     status: '',
   ),
   '12': TractorProblem(
     id: '12',
-    title: 'Pneus e fazer calibragem pelo menos a cada 15 dias.',
+    title: 'Pneus, calibragem pelo menos a cada 15 dias.',
     imageURL: 'assets/images/card/card_image_12.PNG',
     status: '',
   ),
@@ -89,20 +87,19 @@ Map<String, TractorProblem> TRACTOR_PROBLEMS = {
   ),
   '15': TractorProblem(
     id: '15',
-    title: 'Funcionamento dos instrumentos do painel do equipamento.',
+    title: 'Funcionamento dos instrumentos do painel.',
     imageURL: 'assets/images/card/card_image_15.PNG',
     status: '',
   ),
   '16': TractorProblem(
     id: '16',
-    title:
-        'Folga do pedal da embreagem e não deixar o pé sobre o pedal da embreagem após troca de marcha.',
+    title: 'Folga do pedal da embreagem.',
     imageURL: 'assets/images/card/card_image_16.PNG',
     status: '',
   ),
   '17': TractorProblem(
     id: '17',
-    title: 'Acionamento das alavancas de levante \nde 3 pontos e VCR.',
+    title: 'Acionamento das alavancas de levante de 3 pontos e VCR.',
     imageURL: 'assets/images/card/card_image_17.png',
     status: '',
   ),
@@ -115,28 +112,25 @@ Map<String, TractorProblem> TRACTOR_PROBLEMS = {
   '19': TractorProblem(
     id: '19',
     title:
-        'Realizar diariamente a drenagem do filtro sedimentador e o filtro de combustível.',
+        'Diariamente inspecionar filtro sedimentador, filtro de combustível.',
     imageURL: 'assets/images/card/card_image_19.jpg',
     status: '',
   ),
   '20': TractorProblem(
     id: '20',
-    title:
-        'Fazer inspeção em volta do equiamento(360°) e analisar se há vazamentos em geral, parafusos soltos, tubulações e mangueiras, presença de trincas e ver se tem outros problemas.',
+    title: 'Fazer inspeção em volta do equipamento(360°).',
     imageURL: 'assets/images/card/card_image_20.PNG',
     status: '',
   ),
   '21': TractorProblem(
     id: '21',
-    title:
-        'Equipamento em funcionamento e se todos os controles estão funcionando normalmente.',
+    title: ' Verificar se todos os controles estão funcionando normalmente.',
     imageURL: 'assets/images/card/card_image_21.PNG',
     status: '',
   ),
   '22': TractorProblem(
     id: '22',
-    title:
-        'Itens de segurança(Cinto de segurança, retrovisor, buzina e sirene de ré).',
+    title: 'Cinto de segurança, retrovisor, buzina e sirene de ré.',
     imageURL: 'assets/images/card/card_image_22.PNG',
     status: '',
   ),

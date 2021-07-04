@@ -16,13 +16,13 @@ class XlsButton extends StatefulWidget {
   final String fieldName;
   final String fieldTractorIdentification;
 
-  const XlsButton({
-    Key key,    
-    @required this.label,
-    @required this.fileName,
-    @required this.fieldName,
-    @required this.fieldTractorIdentification
-  }) : super(key: key);
+  const XlsButton(
+      {Key key,
+      @required this.label,
+      @required this.fileName,
+      @required this.fieldName,
+      @required this.fieldTractorIdentification})
+      : super(key: key);
 
   @override
   XlsButtonState createState() {
@@ -31,7 +31,6 @@ class XlsButton extends StatefulWidget {
 }
 
 class XlsButtonState extends State<XlsButton> {
-
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -41,7 +40,7 @@ class XlsButtonState extends State<XlsButton> {
         textStyle: const TextStyle(fontSize: 20),
       ),
       onPressed: createExcel,
-      child: Text(widget.label),      
+      child: Text(widget.label),
     );
   }
 
@@ -53,30 +52,34 @@ class XlsButtonState extends State<XlsButton> {
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('dd/MM/yyyy').format(now);
-    String formattedHour = DateFormat('kk:mm').format(now);
+    String formattedHour = DateFormat('HH:mm').format(now);
 
     sheet.getRangeByName('A1').setText('Nome do tratorista');
     sheet.getRangeByName('A2').setText(widget.fieldName);
 
     sheet.getRangeByName('B1').setText('Identificação do trator');
     sheet.getRangeByName('B2').setText(widget.fieldTractorIdentification);
-    
+
     sheet.getRangeByName('A4').setText('Id');
-    for(var row = 0; row < data.length; row++) {
+    for (var row = 0; row < data.length; row++) {
       var sheetRow = row + 5;
       sheet.getRangeByName('A$sheetRow').setText(data.values.elementAt(row).id);
     }
 
     sheet.getRangeByName('B4').setText('Descrição');
-    for(var row = 0; row < data.length; row++) {
+    for (var row = 0; row < data.length; row++) {
       var sheetRow = row + 5;
-      sheet.getRangeByName('B$sheetRow').setText(data.values.elementAt(row).title);
+      sheet
+          .getRangeByName('B$sheetRow')
+          .setText(data.values.elementAt(row).title);
     }
 
     sheet.getRangeByName('C4').setText('Status');
-    for(var row = 0; row < data.length; row++) {
+    for (var row = 0; row < data.length; row++) {
       var sheetRow = row + 5;
-      sheet.getRangeByName('C$sheetRow').setText(data.values.elementAt(row).status);
+      sheet
+          .getRangeByName('C$sheetRow')
+          .setText(data.values.elementAt(row).status);
     }
 
     sheet.getRangeByName('E1').setText('Data de criação');
@@ -86,15 +89,17 @@ class XlsButtonState extends State<XlsButton> {
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    if(kIsWeb) {
+    if (kIsWeb) {
       AnchorElement(
-        href: 'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}' 
-      )..setAttribute('download', '${widget.fileName}.xlsx')
-      ..click();
-    }
-    else {
+          href:
+              'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}')
+        ..setAttribute('download', '${widget.fileName}.xlsx')
+        ..click();
+    } else {
       final String path = (await getApplicationSupportDirectory()).path;
-      final String fileName = Platform.isWindows ? '$path\\${widget.fileName}.xlsx' : '$path/${widget.fileName}.xlsx';
+      final String fileName = Platform.isWindows
+          ? '$path\\${widget.fileName}.xlsx'
+          : '$path/${widget.fileName}.xlsx';
       final File file = File(fileName);
       await file.writeAsBytes(bytes, flush: true);
       OpenFile.open(fileName);
