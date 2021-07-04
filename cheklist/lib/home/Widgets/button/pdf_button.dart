@@ -1,6 +1,3 @@
-import 'package:cheklist/core/app_colors.dart';
-import 'package:cheklist/data/tractor_problems.dart';
-import 'package:cheklist/helpers/generateFilename.dart';
 import 'package:flutter/material.dart';
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/api/pdf_template.dart';

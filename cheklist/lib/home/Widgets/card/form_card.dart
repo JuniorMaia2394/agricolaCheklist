@@ -96,9 +96,8 @@ class _FormCardState extends State<FormCard> {
                       ),
                       onPressed: () {
                         setState(() {
-                          TRACTOR_PROBLEMS[widget.cardNumber]
+                          tractorProblems[widget.cardNumber]
                               .updateStatus('Ok');
-
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
                           _successButtonBackgroundColor =
@@ -113,7 +112,7 @@ class _FormCardState extends State<FormCard> {
                 SizedBox(
                   height: 40,
                   child: ElevatedButton(
-                    child: Text('Defeito', style: AppTextStyles.button),
+                    child: Text('DEFEITO', style: AppTextStyles.button),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                           _dangerButtonBackgroundColor),
@@ -128,8 +127,8 @@ class _FormCardState extends State<FormCard> {
                     ),
                     onPressed: () {
                       setState(() {
-                        TRACTOR_PROBLEMS[widget.cardNumber]
-                            .updateStatus('DEFEITO');
+                        tractorProblems[widget.cardNumber]
+                            .updateStatus('Defeito');
                         _cardBorderColor = AppColors.darkDanger;
                         _successBorderColor = AppColors.lightSuccess;
                         _successButtonBackgroundColor = AppColors.lightSuccess;

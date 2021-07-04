@@ -46,7 +46,7 @@ class XlsButtonState extends State<XlsButton> {
   }
 
   Future<void> createExcel() async {
-    final data = TRACTOR_PROBLEMS;
+    final data = tractorProblems;
 
     final generatedFilename = generateFilename(widget.fileName);
 
