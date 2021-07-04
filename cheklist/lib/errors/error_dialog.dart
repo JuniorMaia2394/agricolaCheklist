@@ -1,18 +1,13 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/core/core.dart';
-import 'package:cheklist/home/Widgets/button/pdf_button.dart';
-import 'package:cheklist/home/Widgets/button/xls_button.dart';
 import 'package:flutter/material.dart';
 
-class CustomDialog extends StatelessWidget {
+class ErrorDialog extends StatelessWidget {
+  final String errorMessage;
 
-  final String fieldName;
-  final String fieldTractorIdentification;
-
-  const CustomDialog({
-    Key key,   
-    @required this.fieldName,
-    @required this.fieldTractorIdentification
+  const ErrorDialog({
+    Key key,
+    this.errorMessage
   }) : super(key: key);
 
   @override
@@ -58,8 +53,8 @@ Widget dialogContent(BuildContext context) {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        "Escolha qual formato de arquivo \ndeseja gerar",
-                        style: AppTextStyles.dialog
+                        this.errorMessage,
+                        style: AppTextStyles.errorDialog
                       ),
                     )
                 ),
@@ -89,54 +84,21 @@ Widget dialogContent(BuildContext context) {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12),
-                                      child: Icon(
-                                        Icons.list_alt_sharp,
-                                        color: AppColors.white
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        padding: const EdgeInsets.all(12.0),
+                                        primary: AppColors.white,
+                                        textStyle: const TextStyle(fontSize: 20),
                                       ),
-                                    ),
-                                    XlsButton(
-                                      label: 'Planilha',
-                                      fileName: 'revisao',
-                                      fieldName: this.fieldName,
-                                      fieldTractorIdentification: this.fieldTractorIdentification,
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
                                     )
                                   ],  
                                 )
                               ],
-                            ),        
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: Stack(
-                              children: <Widget>[
-                                Positioned.fill(
-                                  child: Container(
-                                    color: AppColors.primary,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12),
-                                      child: Icon(
-                                        Icons.article,
-                                        color: AppColors.white,
-                                      ),
-                                    ),
-                                    PdfButton(
-                                      label: 'PDF', 
-                                      fileName: 'revisao',
-                                      fieldName: this.fieldName,
-                                      fieldTractorIdentification: this.fieldTractorIdentification
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),        
+                            ),
                           ),
                         ],
                   ),

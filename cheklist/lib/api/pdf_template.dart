@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/data/tractor_problems.dart';

@@ -45,5 +45,10 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
-
+  
+  static final TextStyle errorDialog = GoogleFonts.inter(
+    color: AppColors.danger,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
 }

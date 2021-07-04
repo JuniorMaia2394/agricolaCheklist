@@ -1,9 +1,12 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/errors/errorMessages.dart';
 import 'package:cheklist/home/Widgets/dialog/custom_dialog.dart';
+import 'package:cheklist/errors/error_dialog.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
+import 'package:cheklist/models/tractor_problem.dart';
 import 'package:flutter/material.dart';
 
 class CustomForm extends StatefulWidget {
@@ -18,6 +21,8 @@ class CustomFormState extends State<CustomForm> {
   final _formKey = GlobalKey<FormState>();
   final _name = new TextEditingController();
   final _tractorId = new TextEditingController();
+
+  var uncheckedCardBorder = AppColors.alert;
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +69,35 @@ class CustomFormState extends State<CustomForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     onPressed: () {
+                      final isCardsValidated = cardsValidation(tractorProblemsData);
+                      var errorMessage;
+
                       RegExp tractorIdValidator =
                           new RegExp(r"^(AF|AL)-[0-9]{4}$");
+
                       Iterable<Match> matches =
                           tractorIdValidator.allMatches(_tractorId.text);
+                          
+                      if (!_formKey.currentState.validate()
+                          && matches.length == 0
+                          && !isCardsValidated
+                      ) {
+                        errorMessage = errorMessages['1'];
+                      } 
+                      else if (
+                        !_formKey.currentState.validate()
+                        || matches.length == 0
+                      ) {
+                        errorMessage = errorMessages['2'];
+                      }
+                      else if (!isCardsValidated) {
+                        errorMessage = errorMessages['3'];
+                      }
 
-                      if (_formKey.currentState.validate() &&
-                          matches.length > 0) {
+                      if (_formKey.currentState.validate()
+                          && matches.length > 0
+                          && isCardsValidated
+                        ) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Enviando os dados...'),
                             backgroundColor: AppColors.darkPrimary));
@@ -82,11 +109,17 @@ class CustomFormState extends State<CustomForm> {
                                 fieldTractorIdentification: _tractorId.text,
                               );
                             });
-                      } else if (!_formKey.currentState.validate() ||
-                          matches.length == 0) {
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Erro no envio dos dados!'),
                             backgroundColor: AppColors.darkDanger));
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ErrorDialog(
+                                errorMessage: errorMessage,
+                              );
+                            });
                       }
                     },
                     label: const Text('Confirmar'),
@@ -100,4 +133,18 @@ class CustomFormState extends State<CustomForm> {
       ),
     );
   }
+}
+
+bool cardsValidation(Map <String,TractorProblem>tractorProblems) {
+  for (
+    var tractorProblemIndex = 1;
+    tractorProblemIndex < tractorProblems.length;
+    tractorProblemIndex++
+  ) {
+    print(tractorProblems.values.elementAt(tractorProblemIndex).isValid);
+    if (!tractorProblems.values.elementAt(tractorProblemIndex).isValid) {
+      return false;
+    }
+  }
+  return true;
 }
