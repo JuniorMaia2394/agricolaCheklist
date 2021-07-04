@@ -1,7 +1,5 @@
 import 'package:cheklist/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-
 import 'package:cheklist/home/Widgets/form/custom_form.dart';
 
 class HomePage extends StatefulWidget {

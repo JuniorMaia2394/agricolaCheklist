@@ -96,9 +96,8 @@ class _FormCardState extends State<FormCard> {
                       ),
                       onPressed: () {
                         setState(() {
-                          TRACTOR_PROBLEMS[widget.cardNumber]
+                          tractorProblems[widget.cardNumber]
                               .updateStatus('Ok');
-
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
                           _successButtonBackgroundColor =
@@ -128,7 +127,7 @@ class _FormCardState extends State<FormCard> {
                     ),
                     onPressed: () {
                       setState(() {
-                        TRACTOR_PROBLEMS[widget.cardNumber]
+                        tractorProblems[widget.cardNumber]
                             .updateStatus('Defeito');
                         _cardBorderColor = AppColors.darkDanger;
                         _successBorderColor = AppColors.lightSuccess;

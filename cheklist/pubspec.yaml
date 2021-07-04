@@ -23,16 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.0
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
   google_fonts: ^2.1.0
   sizer: ^2.0.13
-  mask_text_input_formatter: ^2.0.0
-  syncfusion_flutter_pdf: ^19.1.69-beta
   syncfusion_flutter_xlsio: ^19.1.69-beta
   universal_html: ^2.0.8
 
@@ -41,15 +35,6 @@ dev_dependencies:
     sdk: flutter
   open_file: ^3.2.1
   pdf: ^3.4.2
-  path_provider: ^2.0.2
-  flutter_full_pdf_viewer: ^1.0.6
-  date_format: ^2.0.2
-
-flutter_icons:
-  image_path: "icon/icon.png" 
-  Android: true
-  ios: true
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

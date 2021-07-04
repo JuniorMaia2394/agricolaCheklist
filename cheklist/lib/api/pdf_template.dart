@@ -79,7 +79,7 @@ class PdfTemplate {
   static buildTable() {
     final headers = ['Id', 'Descrição', 'Status'];
 
-    final data = TRACTOR_PROBLEMS.values.toList();
+    final data = tractorProblems.values.toList();
 
     return Table.fromTextArray(
       headers: headers,

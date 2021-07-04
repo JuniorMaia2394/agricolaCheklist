@@ -14,7 +14,7 @@ class CustomForm extends StatefulWidget {
 }
 
 class CustomFormState extends State<CustomForm> {
-  final tractorProblemsData = {...TRACTOR_PROBLEMS};
+  final tractorProblemsData = {...tractorProblems};
   final _formKey = GlobalKey<FormState>();
   final _name = new TextEditingController();
   final _tractorId = new TextEditingController();

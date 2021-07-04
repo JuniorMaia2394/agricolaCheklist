@@ -1,6 +1,6 @@
 import 'package:cheklist/models/tractor_problem.dart';
 
-Map<String, TractorProblem> TRACTOR_PROBLEMS = {
+Map<String, TractorProblem> tractorProblems = {
   '1': TractorProblem(
     id: '1',
     title: 'Nível do óleo do motor.',
