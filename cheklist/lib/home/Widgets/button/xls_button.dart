@@ -1,5 +1,6 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/helpers/generateFilename.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,8 @@ class XlsButtonState extends State<XlsButton> {
   Future<void> createExcel() async {
     final data = TRACTOR_PROBLEMS;
 
+    final generatedFilename = generateFilename(widget.fileName);
+
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
 
@@ -55,7 +58,7 @@ class XlsButtonState extends State<XlsButton> {
     String formattedHour = DateFormat('HH:mm').format(now);
 
     sheet.getRangeByName('A1').setText('Nome do tratorista');
-    sheet.getRangeByName('A2').setText(widget.fieldName);
+    sheet.getRangeByName('A2').setText(widget.fileName);
 
     sheet.getRangeByName('B1').setText('Identificação do trator');
     sheet.getRangeByName('B2').setText(widget.fieldTractorIdentification);
@@ -91,15 +94,12 @@ class XlsButtonState extends State<XlsButton> {
 
     if (kIsWeb) {
       AnchorElement(
-          href:
-              'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}')
-        ..setAttribute('download', '${widget.fileName}.xlsx')
-        ..click();
+        href: 'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}' 
+      )..setAttribute('download', '$generatedFilename.xlsx')
+      ..click();
     } else {
       final String path = (await getApplicationSupportDirectory()).path;
-      final String fileName = Platform.isWindows
-          ? '$path\\${widget.fileName}.xlsx'
-          : '$path/${widget.fileName}.xlsx';
+      final String fileName = Platform.isWindows ? '$path\\$generatedFilename.xlsx' : '$path/$generatedFilename.xlsx';
       final File file = File(fileName);
       await file.writeAsBytes(bytes, flush: true);
       OpenFile.open(fileName);

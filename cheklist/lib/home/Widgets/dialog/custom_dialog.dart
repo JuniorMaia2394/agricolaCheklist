@@ -98,7 +98,7 @@ Widget dialogContent(BuildContext context) {
                                     ),
                                     XlsButton(
                                       label: 'Planilha',
-                                      fileName: 'RevisaoTrator',
+                                      fileName: 'revisao',
                                       fieldName: this.fieldName,
                                       fieldTractorIdentification: this.fieldTractorIdentification,
                                     )
@@ -129,7 +129,7 @@ Widget dialogContent(BuildContext context) {
                                     ),
                                     PdfButton(
                                       label: 'PDF', 
-                                      fileName: 'RevisaoTrator',
+                                      fileName: 'revisao',
                                       fieldName: this.fieldName,
                                       fieldTractorIdentification: this.fieldTractorIdentification
                                     ),
