@@ -1,17 +1,17 @@
-import 'package:cheklist/models/tractor_problem.dart';
+import '../models/tractor_problem.dart';
 
 Map<String, TractorProblem> tractorProblems = {
   '1': TractorProblem(
     id: '1',
     title: 'Nível do óleo do motor.',
-    imageURL: 'assets/images/card/card_image_1.png',
+    imageURL: 'assets/images/card/card_image_1.PNG',
     status: '',
     isValid: false
   ),
   '2': TractorProblem(
     id: '2',
     title: 'Nível de oléo hidraúlico.',
-    imageURL: 'assets/images/card/card_image_2.png',
+    imageURL: 'assets/images/card/card_image_2.PNG',
     status: '',
     isValid: false
   ),
