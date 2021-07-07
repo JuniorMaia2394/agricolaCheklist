@@ -69,7 +69,8 @@ class CustomFormState extends State<CustomForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     onPressed: () {
-                      final isCardsValidated = cardsValidation(tractorProblemsData);
+                      final isCardsValidated =
+                          cardsValidation(tractorProblemsData);
                       var errorMessage;
 
                       RegExp tractorIdValidator =
@@ -77,27 +78,26 @@ class CustomFormState extends State<CustomForm> {
 
                       Iterable<Match> matches =
                           tractorIdValidator.allMatches(_tractorId.text);
-                          
-                      if (!_formKey.currentState.validate()
-                          && matches.length == 0
-                          && !isCardsValidated
-                      ) {
+
+                      if (!_formKey.currentState.validate() &&
+                          matches.length == 0 &&
+                          !isCardsValidated) {
                         errorMessage = errorMessages['1'];
-                      } 
-                      else if (
-                        !_formKey.currentState.validate()
-                        || matches.length == 0
-                      ) {
+                      } else if (matches.length == 0 && !isCardsValidated) {
+                        errorMessage = errorMessages['1'];
+                      } else if (!_formKey.currentState.validate() &&
+                          !isCardsValidated) {
+                        errorMessage = errorMessages['1'];
+                      } else if (!_formKey.currentState.validate() ||
+                          matches.length == 0) {
                         errorMessage = errorMessages['2'];
-                      }
-                      else if (!isCardsValidated) {
+                      } else if (!isCardsValidated) {
                         errorMessage = errorMessages['3'];
                       }
 
-                      if (_formKey.currentState.validate()
-                          && matches.length > 0
-                          && isCardsValidated
-                        ) {
+                      if (_formKey.currentState.validate() &&
+                          matches.length > 0 &&
+                          isCardsValidated) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Enviando os dados...'),
                             backgroundColor: AppColors.darkPrimary));
@@ -135,12 +135,10 @@ class CustomFormState extends State<CustomForm> {
   }
 }
 
-bool cardsValidation(Map <String,TractorProblem>tractorProblems) {
-  for (
-    var tractorProblemIndex = 1;
-    tractorProblemIndex < tractorProblems.length;
-    tractorProblemIndex++
-  ) {
+bool cardsValidation(Map<String, TractorProblem> tractorProblems) {
+  for (var tractorProblemIndex = 1;
+      tractorProblemIndex < tractorProblems.length;
+      tractorProblemIndex++) {
     print(tractorProblems.values.elementAt(tractorProblemIndex).isValid);
     if (!tractorProblems.values.elementAt(tractorProblemIndex).isValid) {
       return false;
