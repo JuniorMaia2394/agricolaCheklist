@@ -58,7 +58,7 @@ class XlsButtonState extends State<XlsButton> {
     String formattedHour = DateFormat('HH:mm').format(now);
 
     sheet.getRangeByName('A1').setText('Nome do tratorista');
-    sheet.getRangeByName('A2').setText(widget.fileName);
+    sheet.getRangeByName('A2').setText(widget.fieldName);
 
     sheet.getRangeByName('B1').setText('Identificação do trator');
     sheet.getRangeByName('B2').setText(widget.fieldTractorIdentification);
@@ -94,12 +94,15 @@ class XlsButtonState extends State<XlsButton> {
 
     if (kIsWeb) {
       AnchorElement(
-        href: 'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}' 
-      )..setAttribute('download', '$generatedFilename.xlsx')
-      ..click();
+          href:
+              'data:application/octet-stream;charset-utf-161e;base64,${base64.encode(bytes)}')
+        ..setAttribute('download', '$generatedFilename.xlsx')
+        ..click();
     } else {
       final String path = (await getApplicationSupportDirectory()).path;
-      final String fileName = Platform.isWindows ? '$path\\$generatedFilename.xlsx' : '$path/$generatedFilename.xlsx';
+      final String fileName = Platform.isWindows
+          ? '$path\\$generatedFilename.xlsx'
+          : '$path/$generatedFilename.xlsx';
       final File file = File(fileName);
       await file.writeAsBytes(bytes, flush: true);
       OpenFile.open(fileName);
