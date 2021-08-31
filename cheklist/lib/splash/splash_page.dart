@@ -8,7 +8,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 2)).then((_) => Navigator.pushReplacement(
+    Future.delayed(Duration(seconds: 2)).then((_) => Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage(title: 'Lista de Manutenção')),
     ));
     return Scaffold(
@@ -35,7 +35,7 @@ class SplashPage extends StatelessWidget {
             )
           ],
         )
-      ),
+      ), 
     );
   }
 }

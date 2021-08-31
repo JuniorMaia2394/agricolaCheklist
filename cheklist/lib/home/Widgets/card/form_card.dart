@@ -1,6 +1,8 @@
 import 'package:cheklist/core/app_colors.dart';
 import 'package:cheklist/core/app_text_styles.dart';
 import 'package:cheklist/data/tractor_problems.dart';
+import 'package:cheklist/home/Widgets/input/form_input_defeito.dart';
+import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,6 +21,12 @@ class FormCard extends StatefulWidget {
 }
 
 class _FormCardState extends State<FormCard> {
+  final _formKey = GlobalKey<FormState>();
+  final _defectFieldController = new TextEditingController();
+  
+  bool _defectField = false;
+
+
   var _cardBorderColor = AppColors.white;
 
   var _successBorderColor = AppColors.success;
@@ -96,8 +104,7 @@ class _FormCardState extends State<FormCard> {
                       ),
                       onPressed: () {
                         setState(() {
-                          tractorProblems[widget.cardNumber]
-                              .updateStatus('Ok');
+                          tractorProblems[widget.cardNumber].updateStatus('Ok');
                           _cardBorderColor = AppColors.darkSuccess;
                           _successBorderColor = AppColors.darkSuccess;
                           _successButtonBackgroundColor =
@@ -134,6 +141,7 @@ class _FormCardState extends State<FormCard> {
                         _successButtonBackgroundColor = AppColors.lightSuccess;
                         _dangerBorderColor = AppColors.darkDanger;
                         _dangerButtonBackgroundColor = AppColors.lightDanger;
+                        _defectField = !_defectField;
                       });
                     },
                   ),
@@ -141,6 +149,13 @@ class _FormCardState extends State<FormCard> {
               ],
             ),
           ),
+          _defectField
+              ? FormInputDefeito(
+                key: _formKey,
+                defectFieldController: _defectFieldController,
+                  label: 'Descreva o defeito',
+                )
+              : Text('')
         ],
       ),
     );

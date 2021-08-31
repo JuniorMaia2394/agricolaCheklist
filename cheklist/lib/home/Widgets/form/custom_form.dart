@@ -3,6 +3,7 @@ import 'package:cheklist/data/tractor_problems.dart';
 import 'package:cheklist/errors/errorMessages.dart';
 import 'package:cheklist/home/Widgets/dialog/custom_dialog.dart';
 import 'package:cheklist/errors/error_dialog.dart';
+import 'package:cheklist/home/Widgets/input/form_input_defeito.dart';
 import 'package:cheklist/home/Widgets/input/form_input_id.dart';
 import 'package:cheklist/home/Widgets/input/form_input_name.dart';
 import 'package:cheklist/home/Widgets/card/form_card.dart';
@@ -53,10 +54,18 @@ class CustomFormState extends State<CustomForm> {
               itemCount: tractorProblemsData.length,
               itemBuilder: (ctx, problem) => Padding(
                 padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
-                child: FormCard(
-                  title: tractorProblemsData.values.elementAt(problem).title,
-                  cardNumber: tractorProblemsData.values.elementAt(problem).id,
-                  image: tractorProblemsData.values.elementAt(problem).imageURL,
+                child: Column(
+                  children: [
+                    FormCard(
+                      title:
+                          tractorProblemsData.values.elementAt(problem).title,
+                      cardNumber:
+                          tractorProblemsData.values.elementAt(problem).id,
+                      image: tractorProblemsData.values
+                          .elementAt(problem)
+                          .imageURL,
+                    ),
+                  ],
                 ),
               ),
             ),

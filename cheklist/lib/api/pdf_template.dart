@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cheklist/api/pdf_api.dart';
 import 'package:cheklist/data/tractor_problems.dart';
 import 'package:cheklist/helpers/generateFilename.dart';
+
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -12,8 +13,11 @@ class PdfTemplate {
   final name;
   final prefixtrat;
 
-  const PdfTemplate(
-      {final this.name, final this.prefixtrat, final this.fileName});
+  const PdfTemplate({
+    final this.name,
+    final this.prefixtrat,
+    final this.fileName,
+  });
 
   static Future<File> generate(name, prefixTrat, fileName) async {
     final pdf = Document();
@@ -22,7 +26,6 @@ class PdfTemplate {
 
     String formattedHour = DateFormat('HH:mm').format(now);
     String generatedFilename = generateFilename(fileName);
-
 
     pdf.addPage(
       MultiPage(
@@ -44,6 +47,7 @@ class PdfTemplate {
             height: 10,
           ),
           buildTable(),
+          buildText(),
         ],
         footer: (context) {
           final text = 'Page ${context.pageNumber} of ${context.pagesCount}';
@@ -99,4 +103,24 @@ class PdfTemplate {
       },
     );
   }
+
+  static Widget buildText() => Center(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Observações:',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 }
